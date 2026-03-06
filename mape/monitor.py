@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-# This is a rabbitmq based monitor
+
+class Monitor:
+    """Monitor component for the MAPE loop.
+
+    Placeholder empty class.
+    """
+    pass
 
 # Test
 
