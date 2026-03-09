@@ -1,10 +1,10 @@
 # Wraps the MAPE-K, reads and stores the model, the M, A, P, E components, the knowledge (?)
 
-from .monitor import Monitor
-from .analyze import Analyze
-from .plan import Plan
-from .execute import Execute
-from .tb_simulator import TBSimulation
+# from monitor import Monitor
+from analyze import Analyze
+from plan import Plan
+from execute import Execute
+from tb_simulator import TBSimulation
 from flask import Flask, request, jsonify
 
 # Wraps the MAPE-K, reads and stores the model, the M, A, P, E components, the knowledge (?)
@@ -12,7 +12,7 @@ from flask import Flask, request, jsonify
 class DigitalTwin:
 
     def __init__(self):
-        self.monitor = Monitor()
+        # self.monitor = Monitor()
         self.analyze = Analyze()
         self.plan = Plan()
         self.execute = Execute()
