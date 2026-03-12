@@ -16,12 +16,13 @@ python -m pip install --upgrade pip
 pip install pika
 pip install pandas
 pip install sklearn-pandas
+pip install flask
 
 echo Give correct permissions to scripts
 chmod +x analyze.sh   
 chmod +x execute.sh   
 chmod +x evolve.sh    
 
-echo Run DT
+echo DT creation completed
 
-./execute.sh #& ./analyze.sh & ./evolve.sh
+# ./execute.sh & ./analyze.sh & ./evolve.sh
