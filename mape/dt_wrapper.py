@@ -52,7 +52,11 @@ class DigitalTwin:
         # self.plan.update_model(model)
 
     def consume(self, message):
-        print(f"DT: Received message #{self.message_counter}")
+        print(f"DT: Received message {message}")
+        for message_part in message:
+            pass
+            # message_part iterates over the root keys. One is always time -> It's the timestamp
+            # Others have to be filtered according to the monitored properties! (remember: the first one is always "topic_" with the first part of the datapath.)
 
 
 app = Flask(__name__)
@@ -188,22 +192,23 @@ if __name__ == "__main__":
     model_path = sys.argv[1]
     _dt.init_dt(model_path)
 
-    stop_event = threading.Event()
+    # stop_event = threading.Event()
 
-    t = threading.Thread(
-        target=start_consumer,
-        args=(stop_event, _dt),
-        daemon=True
-    )
-    t.start()
+    # t = threading.Thread(
+    #     target=start_consumer,
+    #     args=(stop_event, _dt),
+    #     daemon=True
+    # )
+    # t.start()
 
-    def handle_shutdown(signum, frame):
-        print("Shutting down...")
-        stop_event.set()
-        t.join(timeout=5)
-        sys.exit(0)
+    # def handle_shutdown(signum, frame):
+    #     print("Shutting down...")
+    #     stop_event.set()
+    #     t.join(timeout=5)
+    #     sys.exit(0)
 
-    signal.signal(signal.SIGINT, handle_shutdown)
-    signal.signal(signal.SIGTERM, handle_shutdown)
+    # signal.signal(signal.SIGINT, handle_shutdown)
+    # signal.signal(signal.SIGTERM, handle_shutdown)
 
-    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
+    # app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
+    _dt.consume({"odom_pose": {"pose": {"position": {"x": 0.7288241712739588, "y": -0.00447268707303705, "z": 0.0}, "orientation": {"x": 0.0, "y": 0.0, "z": -0.0030683833520548896, "w": 0.9999952925007222}}}, "odom_twist": {"twist": {"linear": {"x": 1.8172804940651441, "y": 0.0, "z": 0.0}, "angular": {"x": 0.0, "y": 0.0, "z": 0.0}}}, "time": "2026-03-12T13:57:55.959336+00:00"})

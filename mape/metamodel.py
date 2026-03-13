@@ -9,6 +9,7 @@ class ValueType(Enum):
     STRING = "string"
     BOOLEAN = "boolean"
     FLOAT = "float"
+    OBJECT = "object"
 
 class BoundType(Enum):
     AT_MOST = "at_most"

@@ -38,5 +38,5 @@ class Monitor:
         self.running = False
         print("Monitor stopped!")
 
-    def _handle_message(self, topic, data_path):
+    def handle_message(self, topic, data_path):
         print(f"Received message from {topic}, extracting {data_path}")
